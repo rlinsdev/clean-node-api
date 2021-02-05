@@ -7,6 +7,9 @@ Rodrigo Manguinho
 npm install standard -D -> Visualização de erros ao desenvolver no ambiente de desenvolvimento (JS)
 npm i lint-staged -D -> Validar arquivos JSs que ainda não foram commitados. Checar se está tudo OK
 npm i husky -D -> Disparará hooks em alguma determinada ação
+npm i jest -g -> Instalar globalmente
+npm i jest -D -> Ferramenta de testes - Apenas em dev enviroment
+    Jest --init -> Configuração do Jest -> Cobertura de testes
 ```
 
 After tsc --init, just let run tsc -w in one window command 

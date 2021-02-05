@@ -6,17 +6,7 @@
   "scripts": {
     "test": "jest"
   },
-  "lint-staged": {
-    "*.js": [
-      "standard --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rlinsdev/clean-node-api.git"

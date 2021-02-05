@@ -5,6 +5,8 @@ Rodrigo Manguinho
 ## Packages
 ```
 npm install standard -D -> Visualização de erros ao desenvolver no ambiente de desenvolvimento (JS)
+npm i lint-staged -D -> Validar arquivos JSs que ainda não foram commitados. Checar se está tudo OK
+npm i husky -D -> Disparará hooks em alguma determinada ação
 ```
 
 After tsc --init, just let run tsc -w in one window command 

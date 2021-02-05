@@ -1,16 +1,10 @@
-# Type Script Tutorial - Ninja Net
+# API em NodeJS com Clean Architecture e TDD
  
- Ninja Net
-
-- Language program
-- Strict types
-- Benefits: debugger, clean code
+Rodrigo Manguinho
 
 ## Packages
 ```
-npm install -g typescript
-    tsc sandbox.ts -> Compile TS into JS
-    tsc sandbox.ts -w -> whatch
+npm install standard -D -> Visualização de erros ao desenvolver no ambiente de desenvolvimento (JS)
 ```
 
 After tsc --init, just let run tsc -w in one window command 

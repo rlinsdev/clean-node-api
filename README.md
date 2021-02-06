@@ -14,13 +14,10 @@ npm i jest -D -> Ferramenta de testes - Apenas em dev enviroment
 
 After tsc --init, just let run tsc -w in one window command 
 
-### Commands
+### Observações
 
-What things you need to install the software and how to install them
-
-```
-tsc --init -> Generate tsconfig.json file
-```
+Vídeo: https://www.youtube.com/watch?v=sKcer-tzYtk
+Minuto 3": O que está errado no código naquele exato momento
 
 ### Installing
 

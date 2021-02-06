@@ -10,6 +10,9 @@ npm i husky -D -> Disparará hooks em alguma determinada ação
 npm i jest -g -> Instalar globalmente
 npm i jest -D -> Ferramenta de testes - Apenas em dev enviroment
     Jest --init -> Configuração do Jest -> Cobertura de testes
+npm i ts-jest -g
+npm install -D typescript
+npm install -D ts-node
 ```
 
 After tsc --init, just let run tsc -w in one window command 

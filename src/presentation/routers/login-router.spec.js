@@ -8,6 +8,7 @@ const makeSut = () => {
     auth (email, password) {
       this.email = email
       this.password = password
+      return this.accessToken
     }
   }
   const authUseCaseSpy = new AuthUseCaseSpy()
@@ -72,7 +73,8 @@ describe('Login router', () => {
   })
 
   test('Should 401 when invalid credentials are provided', () => {
-    const { sut } = makeSut() // Suit under Test
+    const { sut, authUseCaseSpy } = makeSut() // Suit under Test
+    authUseCaseSpy.accessToken = null
     const httpRequest = {
       body: {
         email: 'any_email@mail.com',
@@ -83,7 +85,20 @@ describe('Login router', () => {
     expect(httpResponse.statusCode).toBe(401)
     expect(httpResponse.body).toEqual(new Unauthorized())
   })
-  // TODO: Este teste ainda está errado
+
+  test('Should 200 when valid credentials are provided', () => {
+    const { sut, authUseCaseSpy } = makeSut() // Suit under Test
+    authUseCaseSpy.accessToken = 'anyAccessToken'
+    const httpRequest = {
+      body: {
+        email: 'valid_email@mail.com',
+        password: 'valid_password'
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(200)
+  })
+
   test('Should 500 if no AuthUseCase was provided', () => {
     const sut = new LoginRouter()
     const httpRequest = {
@@ -108,6 +123,5 @@ describe('Login router', () => {
     }
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
-    // expect(httpResponse.body).toEqual(new Unauthorized())
   })
 })

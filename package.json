@@ -4,8 +4,9 @@
   "description": "API em NodeJS com Clean Architecture e TDD",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged":"jest --passWithNoTests"
+    "test": "jest --watch",
+    "test:staged":"jest --passWithNoTests --findRelatedTests --silent",
+    "test:ci":"jest --coverage"
   },
   "repository": {
     "type": "git",

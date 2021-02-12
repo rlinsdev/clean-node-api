@@ -14,6 +14,7 @@ npm i ts-jest -g
 npm install -D typescript
 npm install -D ts-node
 npm test -w -> Watch the test
+npm i validator
 ```
 
 After tsc --init, just let run tsc -w in one window command 

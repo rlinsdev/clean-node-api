@@ -1,4 +1,3 @@
-const { ModuleResolutionKind } = require('typescript')
 const validator = require('validator')
 module.exports = class EmailValidator {
   isValid (email) {

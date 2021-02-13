@@ -1,8 +1,6 @@
 {
-  "husky": {
-      "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm runt test:ci"
-    }
+    "hooks": {
+    "pre-commit": "lint-staged",
+    "pre-push": "npm runt test:ci"
   }
 }

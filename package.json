@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "API em NodeJS com Clean Architecture e TDD",
   "main": "index.js",
+  "private":true,
   "scripts": {
     "test": "jest --silent --colors --noStackTrace --passWithNoTests",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:test": "npm test -- --watch -c jest-integration-config.js",
-    "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage"
+    "test:staged": "npm test --",
+    "test:ci": "npm test -- --coverage",
+    "postinstall": "husky install"
   },
   "repository": {
     "type": "git",

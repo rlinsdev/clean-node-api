@@ -15,6 +15,8 @@ npm install -D typescript
 npm install -D ts-node
 npm test -w -> Watch the test
 npm i validator
+npx husky add .husky/pre-commit "lint-staged"
+npx husky add .husky/pre-push "npm run test:ci"
 ```
 
 After tsc --init, just let run tsc -w in one window command 

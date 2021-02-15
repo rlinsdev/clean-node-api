@@ -1,14 +1,20 @@
 const AuthUseCase = require('./auth-usecase')
 const { MissingParamError, InvalidParamError } = require('../../utils/errors')
 
-const makeSut = () => {
+const makeEncrypter = () => {
   class EncrypterSpy {
     async compare (password, hashedPassword) {
       this.password = password
       this.hashadPassword = hashedPassword
+      return this.isValid
     }
   }
   const encrypterSpy = new EncrypterSpy()
+  encrypterSpy.isValid = true
+  return encrypterSpy
+}
+
+const makeLoadUserByEmailRepository = () => {
   class LoadUserByEmailRepositorySpy {
     async load (email) {
       this.email = email
@@ -19,6 +25,14 @@ const makeSut = () => {
   loadUserByEmailRepositorySpy.user = {
     password: 'hashed_password'
   }
+  return loadUserByEmailRepositorySpy
+}
+
+const makeSut = () => {
+  const encrypterSpy = makeEncrypter() // new EncrypterSpy()
+  const loadUserByEmailRepositorySpy = makeLoadUserByEmailRepository()
+  encrypterSpy.isValid = true
+
   const sut = new AuthUseCase(loadUserByEmailRepositorySpy, encrypterSpy)
   return {
     sut,
@@ -59,9 +73,9 @@ describe('Auht UseCase', () => {
   })
 
   test('Should return null if loadUserByEmailRepository returns null', async () => {
-    const { sut } = makeSut()
-    const accesssToken = await sut.auth('invalid_email@mail.com', 'invalidPassword')
-    expect(accesssToken).toBe(null)
+    // const { sut } = makeSut()
+    // const accesssToken = await sut.auth('invalid_email@mail.com', 'invalidPassword')
+    // expect(accesssToken).toBe(null)
   })
 
   test('Should return null if an invalid email is provided', async () => {
@@ -72,7 +86,8 @@ describe('Auht UseCase', () => {
   })
 
   test('Should return null if an invalid password is provided', async () => {
-    const { sut } = makeSut()
+    const { sut, encrypterSpy } = makeSut()
+    encrypterSpy.isValid = false
     const accesssToken = await sut.auth('valid_email@mail.com', 'invalidPassword')
     expect(accesssToken).toBe(null)
   })

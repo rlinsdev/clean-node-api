@@ -14,7 +14,7 @@ const makeSut = () => {
     makeEmailValidatorSpy
   }
 }
-
+console.log('tese')
 const makeEmailValidator = () => {
   class EmailValidatorSpy {
     isValid (email) {

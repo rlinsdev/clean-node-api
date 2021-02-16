@@ -7,6 +7,7 @@ module.exports = class AuthUseCase {
   }
 
   async auth (email, password) {
+    // try {
     if (!email) {
       throw new MissingParamError('email')
     }
@@ -26,5 +27,9 @@ module.exports = class AuthUseCase {
       return accessToken
     }
     return null
+    // } catch (error) {
+    //   console.error(error)
+    // // return HttpResponse.ServerError()
+    // }
   }
 }

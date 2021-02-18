@@ -6,7 +6,7 @@
   "private":true,
   "scripts": {
     "test": "jest --silent --colors --noStackTrace --passWithNoTests",
-    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
     "test:test": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test --",
     "test:ci": "npm test -- --coverage",

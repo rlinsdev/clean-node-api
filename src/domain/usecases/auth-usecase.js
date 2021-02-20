@@ -30,7 +30,7 @@ module.exports = class AuthUseCase {
       }
     }
     if (!this.loadUserByEmailRepository.load) {
-      throw new InvalidParamError('loadUserByEmailRepository')
+      throw new MissingParamError('loadUserByEmailRepository')
     }
     const user = await this.loadUserByEmailRepository.load(email)
     const isValid = user && await this.encrypter.compare(password, user.password)

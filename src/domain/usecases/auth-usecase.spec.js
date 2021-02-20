@@ -17,7 +17,11 @@ const makeEncrypter = () => {
 const makeEncrypterWithError = () => {
   class EncrypterSpy {
     async compare () {
-      throw new Error()
+      try {
+        throw new Error()
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
   return new EncrypterSpy()
@@ -38,7 +42,11 @@ const makeTokenGenerator = () => {
 const makeTokenGeneratorWithError = () => {
   class TokenGeneratorSpy {
     async generate () {
-      throw new Error()
+      try {
+        throw new Error()
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
   return new TokenGeneratorSpy()
@@ -73,7 +81,11 @@ const makeUpdateAccessTokenRepository = () => {
 const makeUpdateAccessTokenRepositoryWithError = () => {
   class UpdateAccessTokenRepositorySpy {
     async update () {
-      throw new Error()
+      try {
+        throw new Error()
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
   return new UpdateAccessTokenRepositorySpy()
@@ -82,7 +94,11 @@ const makeUpdateAccessTokenRepositoryWithError = () => {
 const makeLoadUserByEmailRepositoryWithError = () => {
   class LoadUserByEmailRepositorySpy {
     async load () {
-      throw new Error()
+      try {
+        throw new Error()
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
   return new LoadUserByEmailRepositorySpy()

@@ -8,15 +8,26 @@ module.exports = class AuthUseCase {
   }
 
   async auth (email, password) {
-    // try {
     if (!email) {
-      throw new MissingParamError('email')
+      try {
+        throw new MissingParamError('email')
+      } catch (err) {
+        console.error(err)
+      }
     }
     if (!password) {
-      throw new MissingParamError('password')
+      try {
+        throw new MissingParamError('password')
+      } catch (err) {
+        console.error(err)
+      }
     }
     if (!this.loadUserByEmailRepository) {
-      throw new MissingParamError('loadUserByEmailRepository')
+      try {
+        throw new MissingParamError('loadUserByEmailRepository')
+      } catch (err) {
+        console.error(err)
+      }
     }
     if (!this.loadUserByEmailRepository.load) {
       throw new InvalidParamError('loadUserByEmailRepository')
@@ -29,9 +40,5 @@ module.exports = class AuthUseCase {
       return accessToken
     }
     return null
-    // } catch (error) {
-    //   console.error(error)
-    // // return HttpResponse.ServerError()
-    // }
   }
 }

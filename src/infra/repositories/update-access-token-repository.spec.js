@@ -9,14 +9,24 @@ const makeSut = () => {
   return { userModel, sut }
 }
 
-describe('Update access Token Repository', async () => {
+describe('Update access Token Repository', () => {
+  let fakeUserId
+
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL)
     db = await MongoHelper.getDB()
   })
 
   beforeEach(async () => {
-    await db.collection('users').deleteMany()
+    const userModel = db.collection('users')
+    await userModel.deleteMany()
+    const fakeUser = await userModel.insertOne({
+      email: 'valid_email@mail.com',
+      name: 'any_name',
+      age: 50,
+      state: 'any_state'
+    })
+    fakeUserId = fakeUser.ops[0]._id
   })
 
   afterAll(async () => {
@@ -25,30 +35,23 @@ describe('Update access Token Repository', async () => {
 
   test('Should update the user with the access Token ', async () => {
     const { sut, userModel } = makeSut() // new UpdateAccessTokenRepository(userModel)
-    const fakeUser = await userModel.insertOne({
-      email: 'valid_email@mail.com'
-    })
-    await sut.update(fakeUser.ops[0]._id, 'valid_token')
-    const updateFakeUser = await userModel.findOne({ _id: fakeUser.ops[0]._id })
+
+    await sut.update(fakeUserId, 'valid_token')
+    const updateFakeUser = await userModel.findOne({ _id: fakeUserId })
     expect(updateFakeUser.accessToken).toBe('valid_token')
   })
 
   test('Should throw if no user model is provided', async () => {
-    const userModel = db.collection('users')
     const sut = new UpdateAccessTokenRepository()
-    const fakeUser = await userModel.insertOne({
-      email: 'valid_email@mail.com'
-    })
-    const promise = sut.update(fakeUser.ops[0]._id, 'valid_token')
+
+    const promise = sut.update(fakeUserId, 'valid_token')
     expect(promise).rejects.toThrow()
   })
 
   test('Should throw if no email is provided', async () => {
-    const { sut, userModel } = makeSut()
-    const fakeUser = await userModel.insertOne({
-      email: 'valid_email@mail.com'
-    })
+    const { sut } = makeSut()
+
     expect(sut.update()).rejects.toThrow(new MissingParamError('userId'))
-    expect(sut.update(fakeUser.ops[0]._id)).rejects.toThrow(new MissingParamError('accessToken'))
+    expect(sut.update(fakeUserId)).rejects.toThrow(new MissingParamError('accessToken'))
   })
 })

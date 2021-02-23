@@ -1,7 +1,11 @@
 const request = require('supertest')
-const app = require('../config/app')
 
 describe('Content-Type Middleware', () => {
+  let app
+  beforeEach(() => {
+    jest.resetModules()
+    app = require('../config/app')
+  })
   test('Should returns json content-type as default', async () => {
     app.get('/test_content_type', (req, res) => {
       res.send({})

@@ -22,6 +22,7 @@ npm i mongodb
 npm i @shelf/jest-mongodb -D -> https://github.com/shelfio/jest-mongodb
 npm i express 
 npm i supertest -D
+npm i fast-glob
 ```
 
 After tsc --init, just let run tsc -w in one window command 

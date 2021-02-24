@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "node src/main/index.js",
-    "test": "jest --colors --silent --noStackTrace --passWithNoTests --runInBand --detectOpenHandles",
+    "test": "jest --colors --silent --noStackTrace --passWithNoTests --runInBand --detectOpenHandles --forceExit",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --silent",
@@ -42,6 +42,7 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
+    "fast-glob": "^3.2.5",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",
     "validator": "^13.5.2"

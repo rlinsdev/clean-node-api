@@ -5,13 +5,16 @@ const { MissingParamError, InvalidParamError } = require('../../utils/errors')
 // SuitUnderTest
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
-  const makeEmailValidatorSpy = makeEmailValidator()
-  const sut = new LoginRouter(authUseCaseSpy, makeEmailValidatorSpy)
+  const emailValidatorSpy = makeEmailValidator()
+  const sut = new LoginRouter({
+    authUseCase: authUseCaseSpy,
+    emailValidator: emailValidatorSpy
+  })
 
   return {
     sut,
     authUseCaseSpy,
-    makeEmailValidatorSpy
+    emailValidatorSpy
   }
 }
 const makeEmailValidator = () => {

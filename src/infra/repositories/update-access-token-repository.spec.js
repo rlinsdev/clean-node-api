@@ -4,9 +4,7 @@ const UpdateAccessTokenRepository = require('./update-access-token-repository')
 let db
 
 const makeSut = () => {
-  const userModel = db.collection('users')
-  const sut = new UpdateAccessTokenRepository(userModel)
-  return { userModel, sut }
+  return new UpdateAccessTokenRepository()
 }
 
 describe('Update access Token Repository', () => {
@@ -34,22 +32,15 @@ describe('Update access Token Repository', () => {
   })
 
   test('Should update the user with the access Token ', async () => {
-    const { sut, userModel } = makeSut() // new UpdateAccessTokenRepository(userModel)
+    const sut = makeSut()
 
     await sut.update(fakeUserId, 'valid_token')
-    const updateFakeUser = await userModel.findOne({ _id: fakeUserId })
+    const updateFakeUser = await db.collection('users').findOne({ _id: fakeUserId })
     expect(updateFakeUser.accessToken).toBe('valid_token')
   })
 
-  test('Should throw if no user model is provided', async () => {
-    const sut = new UpdateAccessTokenRepository()
-
-    const promise = sut.update(fakeUserId, 'valid_token')
-    expect(promise).rejects.toThrow()
-  })
-
   test('Should throw if no email is provided', async () => {
-    const { sut } = makeSut()
+    const sut = makeSut()
 
     expect(sut.update()).rejects.toThrow(new MissingParamError('userId'))
     expect(sut.update(fakeUserId)).rejects.toThrow(new MissingParamError('accessToken'))

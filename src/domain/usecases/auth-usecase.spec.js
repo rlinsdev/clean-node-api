@@ -20,7 +20,8 @@ const makeEncrypterWithError = () => {
       try {
         throw new Error()
       } catch (err) {
-        console.error(err)
+        // console.error(err)
+        console.log(err)
       }
     }
   }
@@ -45,7 +46,8 @@ const makeTokenGeneratorWithError = () => {
       try {
         throw new Error()
       } catch (err) {
-        console.error(err)
+        // console.error(err)
+        console.log(err)
       }
     }
   }
@@ -84,7 +86,8 @@ const makeUpdateAccessTokenRepositoryWithError = () => {
       try {
         throw new Error()
       } catch (err) {
-        console.error(err)
+        // console.error(err)
+        console.log(err)
       }
     }
   }
@@ -97,7 +100,8 @@ const makeLoadUserByEmailRepositoryWithError = () => {
       try {
         throw new Error()
       } catch (err) {
-        console.error(err)
+        // console.error(err)
+        console.log(erro)
       }
     }
   }
@@ -188,7 +192,7 @@ describe('Auht UseCase', () => {
   test('Should call UpdateAccessTokenRepository with correct values', async () => {
     const { sut, loadUserByEmailRepositorySpy, updateAccessTokenRepositorySpy, tokenGeneratorSpy } = makeSut()
     await sut.auth('valid_email@mail.com', 'valid_Password')
-    expect(updateAccessTokenRepositorySpy.userId).toBe(loadUserByEmailRepositorySpy.user.id)
+    expect(updateAccessTokenRepositorySpy.userId).toBe(loadUserByEmailRepositorySpy.user._id)
     expect(updateAccessTokenRepositorySpy.accessToken).toBe(tokenGeneratorSpy.accessToken)
   })
 

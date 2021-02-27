@@ -7,4 +7,7 @@ MongoHelper.connect(env.mongoUrl)
       console.log('server running')
     })
   })
-  .catch(console.error)
+  //.catch(console.error)
+  .catch(err){
+    console.log(err)
+  }

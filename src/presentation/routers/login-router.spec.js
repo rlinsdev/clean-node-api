@@ -35,7 +35,8 @@ const makeEmailValidatorWithError = () => {
       try {
         throw new Error()
       } catch (err) {
-        console.error(err)
+        // console.error(err)
+        console.log(err)
       }
     }
   }
@@ -59,7 +60,8 @@ const makeAuthUseCaseWithError = () => {
       try {
         throw new Error()
       } catch (err) {
-        console.error(err)
+        // console.error(err)
+        console.log(err)
       }
     }
   }

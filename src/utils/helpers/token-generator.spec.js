@@ -1,3 +1,13 @@
+jest.mock('jsonwebtoken', () => ({
+  token: 'any_token',
+
+  sign (id, secret) {
+    this.id = id
+    this.secret = secret
+    return this.token
+  }
+}))
+
 const TokenGenerator = require('./token-generator')
 const jwt = require('jsonwebtoken')
 const MissimParamError = require('../errors/missing-param-error')
